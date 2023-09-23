@@ -7,7 +7,7 @@ pipeline{
     agent any 
         stages{
             stage('clone'){
-                step{
+                steps{
                     git branch: 'master', credentialsId: 'github', url: 'https://github.com/manotisehgall/notejam-django.git'
 
                 }
@@ -31,8 +31,8 @@ pipeline{
             }
             stage('Deployment'){
                 steps{
-                scripts{
-                    kubernetesDeploy(configs: 'deployment.yaml','postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
+                    scripts{
+                        kubernetesDeploy(configs: 'deployment.yaml','postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
                 }
                 }
             }
