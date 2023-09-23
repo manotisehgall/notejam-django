@@ -4,7 +4,7 @@ pipeline{
         dockerImage = ""
         registrycredentials = "dockerhub"
     }
-    agent any {
+    agent any 
         stages{
             stage('clone'){
                 step{
@@ -38,6 +38,6 @@ pipeline{
             }
         }
     }
-}
+
 
 
