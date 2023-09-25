@@ -20,6 +20,7 @@ pipeline{
 
                 }
             }
+            
             stage('Pushing imgage'){
                 steps{
                     script{
@@ -33,7 +34,7 @@ pipeline{
             stage('Deployment'){
                 steps{
                     scripts{
-                        kubernetesDeploy(configs: 'deployment.yaml','postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
+                        kubernetesDeploy(configs: 'postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'deployment.yaml','pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
                 }
                 }
             }
