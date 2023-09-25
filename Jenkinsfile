@@ -3,6 +3,7 @@ pipeline{
         dockerimagename = "guestdev/django-notejam-kube"
         dockerImage = ""
         // registrycredentials = 'dockerhub_id'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     agent any 
         stages{
@@ -23,7 +24,7 @@ pipeline{
             }
             stage("Dockerhub login"){
                 steps{
-                    sh 'echo "12345678" | docker login -u guestdev --password-stdin https://hub.docker.com/'
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 }
             }
             
