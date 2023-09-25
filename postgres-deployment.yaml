@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres1
-        image: postgres
+        image: postgres:15
         resources: {}
         ports:
         - containerPort: 5432
