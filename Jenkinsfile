@@ -40,7 +40,7 @@ pipeline{
             
             stage('Deployment'){
                 steps{
-                    scripts{
+                    script{
                         kubernetesDeploy(configs: 'postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'deployment.yaml','pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
                 }
                 }
