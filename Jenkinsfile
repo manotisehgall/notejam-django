@@ -40,9 +40,13 @@ pipeline{
             
             stage('Deployment'){
                 steps{
-                    script{
-                        kubernetesDeploy(configs: 'postgres-secret','postgres-deployment.yaml','postgres-service.yaml', 'deployment.yaml','pv-def.yaml', 'pvc-def.yaml','notejam-ingress.yaml')
-                }
+                    sh 'kubectl apply -f postgres-secret.yaml'
+                    sh 'kubectl apply -f postgres-deployment.yaml'
+                    sh 'kubectl apply -f postgres-service.yaml'
+                    sh 'kubectl apply -f deployment.yaml'
+                    sh 'kubectl apply -f pv-def.yaml'
+                    sh 'kubectl apply -f pvc-def.yaml'
+                    sh 'kubectl apply -f notejam-ingress.yaml'
                 }
     
         }
