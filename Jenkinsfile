@@ -2,7 +2,7 @@ pipeline{
     environment{
         dockerimagename = "guestdev/django-notejam-kube"
         dockerImage = ""
-        registrycredentials = 'dockerhub_id'
+        // registrycredentials = 'dockerhub_id'
     }
     agent any 
         stages{
@@ -20,12 +20,17 @@ pipeline{
 
                 }
             }
+            stage("Dockerhub login"){
+                steps{
+                    sh 'echo "12345678" | docker login -u guestdev --password-stdin https://hub.docker.com/'
+                }
+            }
             
             stage('Pushing image'){
                 steps{
                     script{
                         dockerImage.tag("latest")
-                        docker.withRegistry(' https://hub.docker.com/ ', registrycredentials){
+                        // docker.withRegistry(' https://hub.docker.com/ ', registrycredentials){
                             dockerImage.push("latest")
                        }
                     }
@@ -39,7 +44,7 @@ pipeline{
                 }
             }
         }
-    }
+    
 
 
 
