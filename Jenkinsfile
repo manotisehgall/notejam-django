@@ -21,11 +21,11 @@ pipeline{
                 }
             }
             
-            stage('Pushing imgage'){
+            stage('Pushing image'){
                 steps{
                     script{
                         dockerImage.tag("latest")
-                        docker.withRegistry('https://hub.docker.com/', registrycredentials){
+                        docker.withRegistry(' https://hub.docker.com/ ', registrycredentials){
                             dockerImage.push("latest")
                        }
                     }
