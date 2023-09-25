@@ -2,7 +2,7 @@ pipeline{
     environment{
         dockerimagename = "guestdev/django-notejam-kube"
         dockerImage = ""
-        registrycredentials = 'dockerhub'
+        registrycredentials = 'dockerhub_id'
     }
     agent any 
         stages{
