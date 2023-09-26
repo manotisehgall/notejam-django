@@ -56,13 +56,12 @@ pipeline{
             stage('Deployment'){
                 steps{
                     script{
-                    sh 'kubectl apply -f postgres-secret.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f postgres-deployment.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f postgres-service.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f deployment.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f pv-def.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f pvc-def.yaml --kubeconfig $KUBECONFIG'
-                    sh 'kubectl apply -f notejam-ingress.yaml --kubeconfig $KUBECONFIG'
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/postgres-secret.yaml"
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/postgres-deployment.yaml"
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/postgres-service.yaml"
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/deployment.yaml"
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/pv-def.yaml"
+                    sh "kubectl --kubeconfig $KUBECONFIG apply -f /var/lib/jenkins/workspace/notejam-jenkins/pvc-def.yaml"
                 }
             }
     
