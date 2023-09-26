@@ -2,7 +2,6 @@ pipeline{
     environment{
         dockerimagename = "guestdev/django-notejam-kube"
         dockerImage = ""
-        
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         KUBECONFIG = credentials('kubeconfig')
     }
