@@ -41,7 +41,7 @@ pipeline{
             stage('K8s Deployment'){
                 steps{
                     script{
-                    kubernetesDeploy.apply('postgres-secret.yaml','postgres-deployment.yaml', 'postgres-service.yaml', 'deployment.yaml','pv-def.yaml', 'pvc-def.yaml', 'notejam-ingress.yaml')
+                    kubernetesDeploy(configs: 'postgres-secret.yaml','postgres-deployment.yaml', 'postgres-service.yaml', 'deployment.yaml','pv-def.yaml', 'pvc-def.yaml', 'notejam-ingress.yaml' , kubeconfigId: 'kubeconfig')
                     }
                 }
             }
