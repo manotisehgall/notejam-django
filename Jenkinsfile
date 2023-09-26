@@ -41,7 +41,7 @@ pipeline{
             stage('K8s Deployment'){
                 steps{
                     script{
-                    kubernetesDeploy(configs: 'postgres-secret.yaml' , kubeconfigId: 'kubeconfig')
+                    // kubernetesDeploy(configs: 'postgres-secret.yaml' , kubeconfigId: 'kubeconfig')
                     kubernetesDeploy(configs: 'postgres-deployment.yaml' , kubeconfigId: 'kubeconfig')
                     kubernetesDeploy(configs: 'postgres-service.yaml' , kubeconfigId: 'kubeconfig')
                     kubernetesDeploy(configs: 'deployment.yaml' , kubeconfigId: 'kubeconfig')
