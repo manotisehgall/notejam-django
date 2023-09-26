@@ -4,6 +4,7 @@ pipeline{
         dockerImage = ""
         // registrycredentials = 'dockerhub_id'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        KUBECONFIG = credentials('kubeconfig')
     }
     agent any 
         stages{
@@ -38,32 +39,34 @@ pipeline{
                     }
                 }
 
-            stage('K8s Deployment'){
+            // stage('K8s Deployment'){
+            //     steps{
+            //         script{
+            //         // kubernetesDeploy(configs: 'postgres-secret.yaml' , kubeconfigId: 'kubeconfig')
+            //         kubernetesDeploy(configs: 'postgres-deployment.yaml' )
+            //         // kubernetesDeploy(configs: 'postgres-service.yaml' , kubeconfigId: 'kubeconfig')
+            //         // kubernetesDeploy(configs: 'deployment.yaml' , kubeconfigId: 'kubeconfig')
+            //         // kubernetesDeploy(configs: 'pv-def.yaml' , kubeconfigId: 'kubeconfig')
+            //         // kubernetesDeploy(configs: 'pvc-def.yaml' , kubeconfigId: 'kubeconfig')
+            //         // kubernetesDeploy(configs: 'notejam-ingress.yaml' , kubeconfigId: 'kubeconfig')
+            //         }
+            //     }
+            // }
+            
+            stage('Deployment'){
                 steps{
                     script{
-                    // kubernetesDeploy(configs: 'postgres-secret.yaml' , kubeconfigId: 'kubeconfig')
-                    kubernetesDeploy(configs: 'postgres-deployment.yaml' )
-                    // kubernetesDeploy(configs: 'postgres-service.yaml' , kubeconfigId: 'kubeconfig')
-                    // kubernetesDeploy(configs: 'deployment.yaml' , kubeconfigId: 'kubeconfig')
-                    // kubernetesDeploy(configs: 'pv-def.yaml' , kubeconfigId: 'kubeconfig')
-                    // kubernetesDeploy(configs: 'pvc-def.yaml' , kubeconfigId: 'kubeconfig')
-                    // kubernetesDeploy(configs: 'notejam-ingress.yaml' , kubeconfigId: 'kubeconfig')
-                    }
+                    sh 'kubectl apply -f postgres-secret.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f postgres-deployment.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f postgres-service.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f deployment.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f pv-def.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f pvc-def.yaml --kubeconfig $KUBECONFIG'
+                    sh 'kubectl apply -f notejam-ingress.yaml --kubeconfig $KUBECONFIG'
                 }
             }
-            
-        //     stage('Deployment'){
-        //         steps{
-        //             sh 'kubectl apply -f postgres-secret.yaml'
-        //             sh 'kubectl apply -f postgres-deployment.yaml'
-        //             sh 'kubectl apply -f postgres-service.yaml'
-        //             sh 'kubectl apply -f deployment.yaml'
-        //             sh 'kubectl apply -f pv-def.yaml'
-        //             sh 'kubectl apply -f pvc-def.yaml'
-        //             sh 'kubectl apply -f notejam-ingress.yaml'
-        //         }
     
-        // }
+        }
         }    
     }
 
