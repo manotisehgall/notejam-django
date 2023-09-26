@@ -4,7 +4,7 @@ pipeline{
         dockerImage = ""
         // registrycredentials = 'dockerhub_id'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        KUBECONFIG = credentials('kubeconfig')
+        // KUBECONFIG = credentials('kubeconfig')
     }
     agent any 
         stages{
