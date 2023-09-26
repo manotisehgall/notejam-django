@@ -39,19 +39,6 @@ pipeline{
                     }
                 }
 
-            // stage('K8s Deployment'){
-            //     steps{
-            //         script{
-            //         // kubernetesDeploy(configs: 'postgres-secret.yaml' , kubeconfigId: 'kubeconfig')
-            //         kubernetesDeploy(configs: 'postgres-deployment.yaml' )
-            //         // kubernetesDeploy(configs: 'postgres-service.yaml' , kubeconfigId: 'kubeconfig')
-            //         // kubernetesDeploy(configs: 'deployment.yaml' , kubeconfigId: 'kubeconfig')
-            //         // kubernetesDeploy(configs: 'pv-def.yaml' , kubeconfigId: 'kubeconfig')
-            //         // kubernetesDeploy(configs: 'pvc-def.yaml' , kubeconfigId: 'kubeconfig')
-            //         // kubernetesDeploy(configs: 'notejam-ingress.yaml' , kubeconfigId: 'kubeconfig')
-            //         }
-            //     }
-            // }
             
             stage('Deployment'){
                 steps{
