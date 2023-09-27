@@ -17,7 +17,7 @@ DATABASES = {
         'ENGINE':os.environ.get('DB_ENGINE','django.db.backends.postgresql_psycopg2'),
         'NAME': os.environ.get('DB_NAME', 'notejam'),
         'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'passwrd'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         'HOST': os.environ.get('DB_HOST', 'postgres-service'),
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
