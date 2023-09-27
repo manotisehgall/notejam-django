@@ -1,6 +1,6 @@
 pipeline{
     environment{
-        dockerimagename = "guestdev/django-notejam-kube"
+        dockerimagename = "guestdev/django-notejam1"
         dockerImage = ""
         // registrycredentials = 'dockerhub_id'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
